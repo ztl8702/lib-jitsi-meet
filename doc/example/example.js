@@ -163,12 +163,22 @@ function onConnectionSuccess() {
     
     room.addCommandListener("startRecording", () => {
         // start local recording here
-        document.body.append("Start Recording <br />");
+
+
+        var div = document.createElement("div");
+        div.style = "color: white; background: green; width: 100%; height: 50px; margin:10px;"
+        div.innerText = "EVENT: Start Recording at" + new Date(Date.now());
+        document.body.append(div);
     });
 
     room.addCommandListener("stopRecording", () => {
         // finish local recording here
-        document.body.append("End Recording <br />");
+
+
+        var div = document.createElement("div");
+        div.style = "color: white; background: red; width: 100%; height: 50px; margin:10px;"
+        div.innerText = "EVENT: Stop Recording at" + new Date(Date.now());
+        document.body.append(div);
     });
     room.join();
 }
