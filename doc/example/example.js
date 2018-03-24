@@ -2,10 +2,10 @@
 
 const options = {
     hosts: {
-        domain: 'jitsi-meet.example.com',
-        muc: 'conference.jitsi-meet.example.com' // FIXME: use XEP-0030
+        domain: 'meet.jit.si',
+        muc: 'conference.meet.jit.si' // FIXME: use XEP-0030
     },
-    bosh: '//jitsi-meet.example.com/http-bind', // FIXME: use xep-0156 for that
+    bosh: 'https://meet.jit.si/http-bind', // FIXME: use xep-0156 for that
 
     // The name of client node advertised in XEP-0115 'c' stanza
     clientNode: 'http://jitsi.org/jitsimeet'
@@ -160,6 +160,16 @@ function onConnectionSuccess() {
     room.on(
         JitsiMeetJS.events.conference.PHONE_NUMBER_CHANGED,
         () => console.log(`${room.getPhoneNumber()} - ${room.getPhonePin()}`));
+    
+    room.addCommandListener("startRecording", () => {
+        // start local recording here
+        document.body.append("Start Recording <br />");
+    });
+
+    room.addCommandListener("stopRecording", () => {
+        // finish local recording here
+        document.body.append("End Recording <br />");
+    });
     room.join();
 }
 
@@ -307,4 +317,13 @@ if (JitsiMeetJS.mediaDevices.isDeviceChangeAvailable('output')) {
             $('#audioOutputSelectWrapper').show();
         }
     });
+}
+
+function signalStart() {
+    room.sendCommandOnce('startRecording', {});
+}
+
+
+function signalEnd() {
+    room.sendCommandOnce('stopRecording', {});
 }

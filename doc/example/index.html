@@ -6,12 +6,14 @@
     <script src="libs/jquery-2.1.1.min.js"></script>
     <script src="libs/strophe/strophe.js"></script>
     <script src="libs/strophe/strophe.disco.min.js?v=1"></script>
-    <script src="../../lib-jitsi-meet.min.js"></script>
+    <script src="https://cdn.jitsi.net/2649/libs/lib-jitsi-meet.min.js"></script>
     <script src="example.js" ></script>
 </head>
 <body>
     <a href="#" onclick="unload()">Unload</a>
     <a href="#" onclick="switchVideo()">switchVideo</a>
+    <a href="#" onclick="signalStart()">Start Recording</a>
+    <a href="#" onclick="signalEnd()">End Recording</a>
     <div id="audioOutputSelectWrapper" style="display: none;">
         Change audio output device
         <select id="audioOutputSelect" onchange="changeAudioOutput(this)"></select>
